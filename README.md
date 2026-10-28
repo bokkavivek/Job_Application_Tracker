@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Job Application Tracker
 
 A full-stack web app to track job applications through the hiring pipeline: add applications, move them between stages on a board, attach the resume you used for each one, and see stats about your search.
@@ -114,3 +115,6 @@ Dockerfile, docker-compose.yml, .github/workflows/ci.yml
 - Drag-and-drop between board columns
 - Alembic migrations, refresh tokens and password reset
 - Deploy: Render/Railway (API) + a free hosted PostgreSQL (e.g. Neon, Supabase)
+=======
+# Job_Application_Tracker
+>>>>>>> 616c6a8a1b81a78ab5fa3b0d21391ca283951d29
