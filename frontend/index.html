@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Job Application Tracker</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="toast" class="toast" hidden></div>
+
+  <!-- ===== Auth ===== -->
+  <main id="auth-view" class="auth" hidden>
+    <div class="auth-card">
+      <h1>Job Application Tracker</h1>
+      <p class="muted">Keep every application, status and resume in one place.</p>
+
+      <div class="tabs">
+        <button class="tab active" data-tab="login" type="button">Log in</button>
+        <button class="tab" data-tab="signup" type="button">Sign up</button>
+      </div>
+
+      <form id="login-form" class="stack">
+        <input name="email" type="email" placeholder="Email" required autocomplete="email">
+        <input name="password" type="password" placeholder="Password" required autocomplete="current-password">
+        <button class="btn primary">Log in</button>
+      </form>
+
+      <form id="signup-form" class="stack" hidden>
+        <input name="name" type="text" placeholder="Full name" required maxlength="100">
+        <input name="email" type="email" placeholder="Email" required autocomplete="email">
+        <input name="password" type="password" placeholder="Password (min 8 characters)" required minlength="8" autocomplete="new-password">
+        <button class="btn primary">Create account</button>
+      </form>
+
+      <form id="otp-form" class="stack" hidden>
+        <p id="otp-msg" class="muted"></p>
+        <input name="otp" inputmode="numeric" maxlength="6" pattern="\d{6}" placeholder="6-digit code" required>
+        <button class="btn primary">Verify email</button>
+        <button type="button" id="resend-otp" class="btn link">Resend code</button>
+      </form>
+    </div>
+  </main>
+
+  <!-- ===== Dashboard ===== -->
+  <div id="app-view" hidden>
+    <header class="topbar">
+      <strong>Job Application Tracker</strong>
+      <div class="row">
+        <span id="user-name" class="muted"></span>
+        <button id="logout" class="btn">Log out</button>
+      </div>
+    </header>
+
+    <section class="container">
+      <div id="stats" class="stats"></div>
+
+      <div class="toolbar">
+        <input id="search" type="search" placeholder="Search company or position…">
+        <select id="status-filter">
+          <option value="">All statuses</option>
+          <option value="applied">Applied</option>
+          <option value="interviewing">Interviewing</option>
+          <option value="offered">Offered</option>
+          <option value="rejected">Rejected</option>
+        </select>
+        <button id="add-btn" class="btn primary">+ Add application</button>
+      </div>
+
+      <div id="board" class="board"></div>
+    </section>
+  </div>
+
+  <input type="file" id="resume-input" accept="application/pdf" hidden>
+
+  <dialog id="app-dialog">
+    <form id="app-form" class="stack">
+      <h2 id="dialog-title">Add application</h2>
+      <div class="grid2">
+        <label>Company<input name="company" required maxlength="120"></label>
+        <label>Position<input name="position" required maxlength="120"></label>
+        <label>Location<input name="location" maxlength="120"></label>
+        <label>Status
+          <select name="status">
+            <option value="applied">Applied</option>
+            <option value="interviewing">Interviewing</option>
+            <option value="offered">Offered</option>
+            <option value="rejected">Rejected</option>
+          </select>
+        </label>
+        <label>Salary min<input name="salary_min" type="number" min="0" step="any"></label>
+        <label>Salary max<input name="salary_max" type="number" min="0" step="any"></label>
+        <label>Applied on<input name="applied_date" type="date"></label>
+        <label>Job link<input name="job_url" type="url" maxlength="500" placeholder="https://…"></label>
+      </div>
+      <label>Notes<textarea name="notes" rows="3" maxlength="2000"></textarea></label>
+      <div class="row end">
+        <button type="button" id="cancel-dialog" class="btn">Cancel</button>
+        <button class="btn primary">Save</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script src="app.js"></script>
+</body>
+</html>
